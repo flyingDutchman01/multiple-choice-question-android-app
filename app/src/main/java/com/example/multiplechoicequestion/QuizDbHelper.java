@@ -52,7 +52,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q1 = new Question(" नेपालको इतिहासमा गोरे जर्नेल भनेर कसलाई चिनिन्छ ?  ","जगतजंग","भीमजंग कुँवर","रणविर जङ्ग","जीतजंग कुँवर    ",2);
         addQuestion(q1);
 
-        Question q2 = new Question("B is correct","A","B","C","D",2);
+        Question q2 = new Question("B is correct","A1","B","C","D",2);
         addQuestion(q2);
 
         Question q3 = new Question("C is correct","A","B","C","D",3);
