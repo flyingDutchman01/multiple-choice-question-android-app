@@ -2,9 +2,11 @@ package com.example.multiplechoicequestion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -16,6 +18,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
+
+    public static final String EXTRA_SCORE ="extraScore";
+    private static final long COUNTDOWN_IN_MILLIS = 3000;
+
     private TextView tvQuestion;
     private TextView tvScore;
     private TextView tvQuestionCount;
@@ -28,6 +34,10 @@ public class QuizActivity extends AppCompatActivity {
     private Button buttonConfirmNext;
 
     private ColorStateList textColorDefaultRb;
+    private ColorStateList textColorDefaultCd;
+
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
 
     private List<Question> questionList;
     private int questionCounter;
@@ -36,6 +46,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private int score;
     private boolean answered;
+
+    private long backPressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +163,19 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void finishQuiz(){
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(EXTRA_SCORE,score);
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime+2000 > System.currentTimeMillis()){
+           finishQuiz();
+        }else{
+            Toast.makeText(QuizActivity.this,"Press back again to finish",Toast.LENGTH_SHORT).show();;
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 }

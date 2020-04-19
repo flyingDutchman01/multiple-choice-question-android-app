@@ -49,7 +49,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
     private void fillQuestionsTable(){
-        Question q1 = new Question("A is correct","A","B","C","D",1);
+        Question q1 = new Question("1. नेपालको इतिहासमा गोरे जर्नेल भनेर कसलाई चिनिन्छ ?  ","जगतजंग","भीमजंग कुँवर","रणविर जङ्ग","जीतजंग कुँवर    ",2);
         addQuestion(q1);
 
         Question q2 = new Question("B is correct","A","B","C","D",2);
