@@ -79,8 +79,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q10 = new Question("उजुरी पेटिकाको ब्यवस्था गर्ने राणा प्रधानमन्त्री को हुन् ?","वीर शमशेर","देव शमशेर","चन्द्र शमशेर","जुद्ध शमशेर",2);
         addQuestion(q10);
 
-        Question q11 = new Question("यहाङ्ग विभिन्न कालका प्रथम राजाहरुको नाम दिइएका छन् । 1. अरिदेव मल्ल\t2. भक्तमान\t3. जयदेव\t\t4. बरसिंह\n" +
-                "कालखण्डका आधारमा पहिलोदेखि अन्तिम क्रममा मिलाउनुहोस् ।","2,3,4,1","1,2,3,4","3,2,1,4","2,4,3,1",4);
+        Question q11 = new Question("यहाङ्ग विभिन्न कालका प्रथम राजाहरुको नाम दिइएका छन् ।  १.अरिदेव मल्ल   २.भक्तमान  ३.जयदेव  ४.बरसिंह" +
+                "कालखण्डका आधारमा पहिलोदेखि अन्तिम क्रममा मिलाउनुहोस् ।","२,३,४,१","१,२,३,४","३,२,१,४","२,४,३,१",4);
         addQuestion(q11);
 
         Question q12 = new Question("2015 सालको निर्वाचनमा निर्वाचित हुने एक मात्र महिला प्रतिनिधि को हुन् ? ","सहानादेवी प्रधान","द्वारिकादेवी ठकुरानी","भद्रा कुमारी घले","शैलजा आचार्य",3);
@@ -98,14 +98,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q16 = new Question("नेपालको इतिहासमा स्वर्णयुग भनि कुन काललाई भनिन्छ ? ","लिच्छवी","किराँत","मल्ल काल","शाह काल",1);
         addQuestion(q16);
 
-        Question q17 = new Question("प्रधानमन्त्रीहरुको क्रम मिलाउनुहोस् । 1. पुष्कर शाह\t2. भिमसेन थापा\t3. रणजङ्ग पाण्डे\t4. रंगनाथ पौडेल\t5. माथवरसिंह थापा","2,4,1,3,5","2,4,1,5,3","2,4,3,1,5","2,4,5,3,1",1);
+        Question q17 = new Question("प्रधानमन्त्रीहरुको क्रम मिलाउनुहोस् । १.पुष्कर शाह  २.भिमसेन थापा  ३.रणजङ्ग पाण्डे  4.रंगनाथ पौडेल  ५.माथवरसिंह थापा","२,४,१,३,५","२,४,१,५,३","२,४,३,१,५","२,४,५,३,१",1);
         addQuestion(q17);
 
 
         Question q18 = new Question("अष्ट्रियाले कुन देशमा आक्रमण गरेपछि प्रथम विश्व युद्धको शुरुवात भएको थियो ?  ","सर्विया","इटाली","जर्मनी","स्वीडेन",1);
         addQuestion(q18);
 
-        Question q19 = new Question("प्रथम विश्व युद्धको क्रममा कति जना नेपालीले भिक्टोरिया क्रस प्राप्त गरेका थिए ? ","1 जना","2 जना","3 जना","4 जना",2);
+        Question q19 = new Question("प्रथम विश्व युद्धको क्रममा कति जना नेपालीले भिक्टोरिया क्रस प्राप्त गरेका थिए ? ","१ जना","२ जना","३ जना","४ जना",2);
         addQuestion(q19);
 
 
@@ -122,10 +122,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     }
 
-    public List<Question> getAllQuestions(){
-        List<Question> questionList = new ArrayList<>();
+    public ArrayList<Question> getAllQuestions(){
+        ArrayList<Question> questionList = new ArrayList<>();
         db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
+         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
 
         if(c.moveToFirst()){
             do{

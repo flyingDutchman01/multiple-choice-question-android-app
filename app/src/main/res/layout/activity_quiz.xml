@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     tools:context=".QuizActivity">
 
     <TextView
@@ -13,6 +14,7 @@
         android:text="Score: 0"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:freezesText="true"
         />
 
     <TextView
@@ -23,6 +25,7 @@
         android:text="Question: 1/x"
         android:textSize="20dp"
         android:textColor="@color/black"
+        android:freezesText="true"
         />
 
     <TextView
@@ -34,6 +37,7 @@
         android:text="00:30"
         android:textColor="@color/black"
         android:textSize="43dp"
+        android:freezesText="true"
         />
 
     <TextView
@@ -42,9 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/radio_group"
         android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
         android:text="1.तलका मध्ये कुन बादलको प्रकार होइन ?"
         android:textSize="20dp"
         android:textColor="@color/black"
+        android:freezesText="true"
         />
     <RadioGroup
         android:id="@+id/radio_group"
@@ -59,6 +65,7 @@
             android:layout_height="wrap_content"
             android:text="option1"
             android:textSize="20dp"
+            android:freezesText="true"
             />
 
         <RadioButton
@@ -67,6 +74,7 @@
             android:layout_height="wrap_content"
             android:text="option2"
             android:textSize="20dp"
+            android:freezesText="true"
             />
         <RadioButton
             android:id="@+id/radio_button3"
@@ -74,6 +82,7 @@
             android:layout_height="wrap_content"
             android:text="option3"
             android:textSize="20dp"
+            android:freezesText="true"
             />
         <RadioButton
             android:id="@+id/radio_button4"
@@ -81,6 +90,7 @@
             android:layout_height="wrap_content"
             android:text="option4"
             android:textSize="20dp"
+            android:freezesText="true"
             />
     </RadioGroup>
 
@@ -94,6 +104,7 @@
         android:text="Submit"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:freezesText="true"
 
         />
 
