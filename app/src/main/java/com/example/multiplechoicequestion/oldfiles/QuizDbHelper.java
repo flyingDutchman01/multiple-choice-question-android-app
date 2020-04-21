@@ -1,16 +1,16 @@
-package com.example.multiplechoicequestion;
+/*
+package com.example.multiplechoicequestion.oldfiles;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.multiplechoicequestion.QuizContract.*;
+import com.example.multiplechoicequestion.oldfiles.QuizContract.*;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
 
@@ -143,3 +143,4 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return questionList;
     }
 }
+*/

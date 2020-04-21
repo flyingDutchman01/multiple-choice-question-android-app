@@ -1,4 +1,5 @@
-package com.example.multiplechoicequestion;
+/*
+package com.example.multiplechoicequestion.oldfiles;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -105,3 +106,4 @@ public class Question  implements Parcelable {
         this.ansNum = ansNum;
     }
 }
+*/

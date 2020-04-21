@@ -1,4 +1,5 @@
-package com.example.multiplechoicequestion;
+/*
+package com.example.multiplechoicequestion.oldfiles;
 
 import android.provider.BaseColumns;
 
@@ -16,3 +17,4 @@ public class QuizContract {
         public static final String COLUMN_ANSWER_NR ="answer_nr";
     }
 }
+*/

@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.multiplechoicequestion.view.ui.QuizActivity;
+
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;
 

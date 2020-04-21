@@ -1,4 +1,5 @@
-package com.example.multiplechoicequestion;
+/*
+package com.example.multiplechoicequestion.oldfiles;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +17,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.multiplechoicequestion.R;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
@@ -269,3 +271,4 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 }
+*/
