@@ -1,6 +1,4 @@
-package com.example.multiplechoicequestion;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.multiplechoicequestion.view.ui;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -14,11 +12,21 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.multiplechoicequestion.R;
+import com.example.multiplechoicequestion.room.Question;
+import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
+
+    private QuestionViewModel mViewModel;
 
     public static final String EXTRA_SCORE ="extraScore";
     private static final long COUNTDOWN_IN_MILLIS = 30000;
@@ -68,12 +76,24 @@ public class QuizActivity extends AppCompatActivity {
     textColorDefaultRb = rb1.getTextColors();
     textColorDefaultCd = tvTimer.getTextColors();
 
-    QuizDbHelper dbHelper = new QuizDbHelper(this);
-    questionList = dbHelper.getAllQuestions();
-    questionCountTotal = questionList.size();
-        Collections.shuffle(questionList);
+    mViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
+    //questionList = mViewModel.getAllWords().getValue();
 
-        showNextQuestion();
+        System.out.println();
+
+    mViewModel.getAllWords().observe(this, new Observer<List<Question>>() {
+        @Override
+        public void onChanged(List<Question> questions) {
+            //adapater.setWords(questions);
+            questionList = questions;
+            questionCountTotal = questionList.size();
+
+            Collections.shuffle(questionList);
+
+            showNextQuestion();
+        }
+    });
+
 
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +177,7 @@ public class QuizActivity extends AppCompatActivity {
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
 
-        if(answerNr == currentQuestion.getAnsNum()){
+        if(answerNr == currentQuestion.getAnswerNr()){
             score++;
             tvScore.setText("Score: "+ score);
         }
@@ -170,7 +190,7 @@ public class QuizActivity extends AppCompatActivity {
         rb3.setTextColor(Color.RED);
         rb4.setTextColor(Color.RED);
 
-        switch (currentQuestion.getAnsNum()){
+        switch (currentQuestion.getAnswerNr()){
             case 1:
                 rb1.setTextColor(Color.GREEN);
                 tvQuestion.setText("Answer 1 is correct");

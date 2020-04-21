@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.multiplechoicequestion.view.ui.QuizActivity;
+
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;
 
@@ -58,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
     private void loadHighscore(){
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         highScore = prefs.getInt(KEY_HIGHSCORE, 0);
-        textViewHighScore.setText("Highcore: " + highScore);
+        textViewHighScore.setText("Highscore: " + highScore);
 
     }
     private void updateHighScore(int highScoreNew){
         highScore = highScoreNew;
-        textViewHighScore.setText("Highcore: " + highScore);
+        textViewHighScore.setText("Highscore: " + highScore);
 
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

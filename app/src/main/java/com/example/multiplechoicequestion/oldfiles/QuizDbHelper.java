@@ -1,11 +1,12 @@
-package com.example.multiplechoicequestion;
+/*
+package com.example.multiplechoicequestion.oldfiles;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.multiplechoicequestion.QuizContract.*;
+import com.example.multiplechoicequestion.oldfiles.QuizContract.*;
 
 import androidx.annotation.Nullable;
 
@@ -29,6 +30,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         this.db=db;
 
+        final String SQL_CREATE_CATEGORIES_TABLE = "CREATE TABLE " +
+                CategoriesTable.TABLE_NAME + " ( " +
+                CategoriesTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                CategoriesTable.COLUMN_NAME + " TEXT " + ")";
+
         final String SQL_CREATE_QUESTIONS_TABLE = "CREATE TABLE " +
                 QuestionsTable.TABLE_NAME + " ( " +
                 QuestionsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -36,16 +42,23 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION1 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
-                 QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
+                QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER_NR + " INTEGER" +
+                QuestionsTable.COLUMN_CATEGORY_ID + "INTEGER, " +
+                "FOREIGN KEY(" + QuestionsTable.COLUMN_CATEGORY_ID + ") REFERENCES "+
+                CategoriesTable.TABLE_NAME + "(" + CategoriesTable._ID + ")" + "ON DELETE CASCADE" +
                 ")";
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
-        fillQuestionsTable();
+        db.execSQL(SQL_CREATE_CATEGORIES_TABLE);
+        //fillQuestionsTable();
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(" DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
+
         onCreate(db);
     }
     private void fillQuestionsTable(){
@@ -143,3 +156,4 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         return questionList;
     }
 }
+*/
