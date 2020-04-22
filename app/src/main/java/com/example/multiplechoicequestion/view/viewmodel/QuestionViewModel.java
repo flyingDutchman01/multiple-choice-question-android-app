@@ -6,31 +6,61 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.multiplechoicequestion.room.CategoricalQuestion;
+import com.example.multiplechoicequestion.room.Category;
 import com.example.multiplechoicequestion.room.Question;
 import com.example.multiplechoicequestion.room.QuestionRepository;
 
 import java.util.List;
 
 public class QuestionViewModel extends AndroidViewModel {
-
     private QuestionRepository mRepository;
 
-    private LiveData<List<Question>> mAllWords;
+    private LiveData<List<Question>> mAllQuestion;
+    private LiveData<List<Category>> mAllCategory;
+    private LiveData<List<CategoricalQuestion>> mAllCategoricalQuestion;
 
     public QuestionViewModel(@NonNull Application application) {
         super(application);
 
         mRepository = new QuestionRepository(application);
-        mAllWords = mRepository.getAllQuestions();
+        mAllQuestion = mRepository.getAllQuestions();
+        mAllCategory = mRepository.getAllCategories();
+        mAllCategoricalQuestion = mRepository.getAllCategoricalQuestions();
         //System.out.println("size: " + mAllWords.getValue().size());
     }
 
-    public LiveData<List<Question>> getAllWords() {
-        if(mAllWords == null){
-             mAllWords = mRepository.getAllQuestions();
+    public LiveData<List<Question>> getAllQuestions() {
+        if (mAllQuestion == null) {
+            mAllQuestion = mRepository.getAllQuestions();
         }
-        return  mAllWords;
+        return mAllQuestion;
     }
 
-    public void insert(Question word) { mRepository.insert(word);}
+    public LiveData<List<Category>> getAllCategories() {
+        if (mAllCategory == null) {
+            mAllCategory = mRepository.getAllCategories();
+        }
+        return mAllCategory;
+    }
+
+    public LiveData<List<CategoricalQuestion>> getAllCategoricalQuestions() {
+        if (mAllCategory == null) {
+            mAllCategoricalQuestion = mRepository.getAllCategoricalQuestions();
+        }
+        return mAllCategoricalQuestion;
+    }
+
+    public LiveData<List<CategoricalQuestion>> getAllCategoricalQuestions(int categoryId, int setNr) {
+        return mRepository.getAllCategoricalQuestions(categoryId, setNr);
+    }
+
+
+    public void insert(Question question) {
+        mRepository.insert(question);
+    }
+
+    public void insert(Category category) {
+        mRepository.insert(category);
+    }
 }

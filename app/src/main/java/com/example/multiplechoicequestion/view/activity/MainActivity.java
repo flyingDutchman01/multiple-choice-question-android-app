@@ -1,7 +1,4 @@
-package com.example.multiplechoicequestion;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.multiplechoicequestion.view.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.multiplechoicequestion.view.ui.QuizActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.multiplechoicequestion.R;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;

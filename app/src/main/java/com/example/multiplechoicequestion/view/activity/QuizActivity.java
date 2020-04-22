@@ -1,8 +1,9 @@
-package com.example.multiplechoicequestion.view.ui;
+package com.example.multiplechoicequestion.view.activity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -17,18 +18,23 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.multiplechoicequestion.R;
+import com.example.multiplechoicequestion.room.CategoricalQuestion;
 import com.example.multiplechoicequestion.room.Question;
 import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class QuizActivity extends AppCompatActivity {
 
     private QuestionViewModel mViewModel;
 
     public static final String EXTRA_SCORE ="extraScore";
+    public static final String CATEGORY_ID = "categoryId";
+    public static final String SET_NR = "setNr";
     private static final long COUNTDOWN_IN_MILLIS = 30000;
 
     private TextView tvQuestion;
@@ -57,42 +63,60 @@ public class QuizActivity extends AppCompatActivity {
     private boolean answered;
 
     private long backPressedTime;
+    private int categoryIndex;
+    private int setNr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-    tvQuestion = findViewById(R.id.question_text);
-    tvScore = findViewById(R.id.score);
-    tvQuestionCount = findViewById(R.id.question_number);
-    tvTimer = findViewById(R.id.tv_countdown);
-    rbGroup = findViewById(R.id.radio_group);
-    rb1 = findViewById(R.id.radio_button1);
-    rb2 = findViewById(R.id.radio_button2);
-    rb3 = findViewById(R.id.radio_button3);
-    rb4 = findViewById(R.id.radio_button4);
-    buttonConfirmNext = findViewById(R.id.submit_area);
 
-    textColorDefaultRb = rb1.getTextColors();
-    textColorDefaultCd = tvTimer.getTextColors();
+        categoryIndex = getIntent().getIntExtra(CATEGORY_ID, 0);
+        setNr = getIntent().getIntExtra(SET_NR, 1);
 
-    mViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
-    //questionList = mViewModel.getAllWords().getValue();
+        tvQuestion = findViewById(R.id.question_text);
+        tvScore = findViewById(R.id.score);
+        tvQuestionCount = findViewById(R.id.question_number);
+        tvTimer = findViewById(R.id.tv_countdown);
+        rbGroup = findViewById(R.id.radio_group);
+        rb1 = findViewById(R.id.radio_button1);
+        rb2 = findViewById(R.id.radio_button2);
+        rb3 = findViewById(R.id.radio_button3);
+        rb4 = findViewById(R.id.radio_button4);
+        buttonConfirmNext = findViewById(R.id.submit_area);
+
+        textColorDefaultRb = rb1.getTextColors();
+        textColorDefaultCd = tvTimer.getTextColors();
+
+        mViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
+        //questionList = mViewModel.getAllWords().getValue();
 
         System.out.println();
 
-    mViewModel.getAllWords().observe(this, new Observer<List<Question>>() {
-        @Override
-        public void onChanged(List<Question> questions) {
-            //adapater.setWords(questions);
-            questionList = questions;
-            questionCountTotal = questionList.size();
+        mViewModel.getAllCategoricalQuestions().observe(this, new Observer<List<CategoricalQuestion>>() {
+            @Override
+            public void onChanged(List<CategoricalQuestion> questions) {
+                //adapater.setWords(questions);
+                questionList = questions.get(categoryIndex).questionList;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    questionList = questionList.stream()
+                            .filter(q -> q.getSetNr() == setNr).collect(Collectors.toList());
+                } else {
+                    List<Question> newQuestionList = new ArrayList<>();
+                    for (Question question : questionList) {
+                        if (question.getSetNr() == setNr)
+                            newQuestionList.add(question);
+                    }
+                    questionList = newQuestionList;
+                }
+                questionCountTotal = questionList.size();
 
-            Collections.shuffle(questionList);
 
-            showNextQuestion();
-        }
-    });
+                Collections.shuffle(questionList);
+
+                showNextQuestion();
+            }
+        });
 
 
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
@@ -232,7 +256,7 @@ public class QuizActivity extends AppCompatActivity {
         if(backPressedTime+2000 > System.currentTimeMillis()){
            finishQuiz();
         }else{
-            Toast.makeText(QuizActivity.this,"Press back again to finish",Toast.LENGTH_SHORT).show();;
+            Toast.makeText(QuizActivity.this, "Press back again to finish", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
     }

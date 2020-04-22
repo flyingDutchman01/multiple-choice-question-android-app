@@ -1,5 +1,4 @@
 package com.example.multiplechoicequestion.room;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -39,9 +38,9 @@ public class Question {
     @ColumnInfo(name = "category_id")
     private int mCategoryId;
 
-    public void setCategoryId(int mCategoryId) {
-        this.mCategoryId = mCategoryId;
-    }
+    @NonNull
+    @ColumnInfo(name = "set_nr")
+    private int mSetNr;
 
     @Ignore
     public Question(@NonNull String mQuestion, @NonNull String mOption1, @NonNull String mOption2, @NonNull String mOption3, @NonNull String mOption4, @NonNull int mAnswerNr, @NonNull int mCategoryId) {
@@ -54,6 +53,7 @@ public class Question {
         this.mCategoryId = mCategoryId;
     }
 
+    @Ignore
     public Question(@NonNull String mQuestion, @NonNull String mOption1, @NonNull String mOption2, @NonNull String mOption3, @NonNull String mOption4, int mAnswerNr) {
         this.mQuestion = mQuestion;
         this.mOption1 = mOption1;
@@ -61,6 +61,17 @@ public class Question {
         this.mOption3 = mOption3;
         this.mOption4 = mOption4;
         this.mAnswerNr = mAnswerNr;
+    }
+
+    public Question(@NonNull String mQuestion, @NonNull String mOption1, @NonNull String mOption2, @NonNull String mOption3, @NonNull String mOption4, @NonNull int mAnswerNr, @NonNull int mCategoryId, @NonNull int mSetNr) {
+        this.mQuestion = mQuestion;
+        this.mOption1 = mOption1;
+        this.mOption2 = mOption2;
+        this.mOption3 = mOption3;
+        this.mOption4 = mOption4;
+        this.mAnswerNr = mAnswerNr;
+        this.mCategoryId = mCategoryId;
+        this.mSetNr = mSetNr;
     }
 
     public void setId(int id) {
@@ -106,5 +117,7 @@ public class Question {
         return mCategoryId;
     }
 
-
+    public int getSetNr() {
+        return mSetNr;
+    }
 }

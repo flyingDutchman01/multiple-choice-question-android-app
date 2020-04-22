@@ -1,4 +1,4 @@
-package com.example.multiplechoicequestion.view.ui;/*
+/*
 package com.example.multiplechoicequestion.view.ui;
 
 import android.content.Intent;
@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.multiplechoicequestion.oldfiles.QuizActivity;
 import com.example.multiplechoicequestion.R;
 import com.example.multiplechoicequestion.room.Question;
 import com.example.multiplechoicequestion.view.adapter.QuestionListAdapter;
@@ -64,9 +63,10 @@ public class QuestionFragment extends Fragment {
         mViewModel.getAllWords().observe(getActivity(), new Observer<List<Question>>() {
             @Override
             public void onChanged(List<Question> questions) {
-                adapater.setWords(questions);
+                adapater.setQuestions(questions);
             }
         });
+
     }
 
     @Override
@@ -84,4 +84,6 @@ public class QuestionFragment extends Fragment {
 
     }
 }
+
+
 */
