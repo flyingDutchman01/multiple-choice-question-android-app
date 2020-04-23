@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/highscore"
-        android:text="@string/knowledge_universe"
+        android:text="@string/Knowledge_Universe"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:layout_below="@id/animation_view"
