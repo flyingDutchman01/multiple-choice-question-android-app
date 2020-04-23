@@ -68,4 +68,11 @@ public class QuestionViewModel extends AndroidViewModel {
         mRepository.deleteAll();
     }
 
+    public LiveData<Integer> getQuestionRowCount() {
+        return mRepository.getQuestionRowCount();
+    }
+
+    public LiveData<Integer> getQuestionRowCount(int categoryId) {
+        return mRepository.getQuestionRowCount(categoryId);
+    }
 }

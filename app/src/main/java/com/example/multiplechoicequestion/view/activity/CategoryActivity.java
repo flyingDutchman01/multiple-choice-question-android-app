@@ -1,5 +1,6 @@
 package com.example.multiplechoicequestion.view.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,16 +43,10 @@ public class CategoryActivity extends AppCompatActivity {
         List<String> file = new ArrayList<>(Arrays.asList("Science-50", "Others-75", "Sports-50", "IQ-50", "History-100", "Entertenment-50", "Geography-50", "Full-forms-20", "Dharma-Sanskriti-75", "Litrature-50"));
         String filename = "_Export_DataFrame.jsondata.json";
         List<String> category = new ArrayList<>(Arrays.asList("Science", "Others", "Sports", "IQ", "History", "Entertainment", "Geography", "Full Forms", "Dharma-Sanskriti", "Literature"));
-
-        int count = 0;
+        List<Integer> categorySetCount = new ArrayList<>();
 
         mViewModel.deleteAll();
 
-        for (String c : category) {
-            Category cat = new Category(count, c, 1);
-            mViewModel.insert(cat);
-            count++;
-        }
         //  System.out.println(s);
         for (String f : file) {
             String s = loadJSONFromAsset(f.concat(filename));
@@ -65,21 +60,41 @@ public class CategoryActivity extends AppCompatActivity {
                 JSONObject option4Object = obj.getJSONObject("option4");
                 JSONObject answerObject = obj.getJSONObject("answer");
                 JSONObject categoryObject = obj.getJSONObject("category");
+                int rowLength = questionObject.length();
+                int maxQuestion = 20;
+                int setNr = 1;
+                int questionCount = 0;
                 for (int i = 0; i < questionObject.length(); i++) {
                     String index = Integer.toString(i);
+
+                    questionCount++;
+                    if (questionCount > maxQuestion) {
+                        questionCount = 1;
+                        setNr++;
+                    }
+
                     Question q = new Question(questionObject.getString(index),
                             option1Object.getString(index), option2Object.getString(index),
                             option3Object.getString(index), option4Object.getString(index),
-                            Integer.parseInt(answerObject.get(index).toString()), Integer.parseInt(categoryObject.getString(index)), 1
+                            Integer.parseInt(answerObject.get(index).toString()), Integer.parseInt(categoryObject.getString(index)), setNr
                     );
+
                     //System.out.println(q.getCategoryId());
                     mViewModel.insert(q);
                 }
+                categorySetCount.add(setNr);
             } catch (JSONException e) {
                 System.out.println("ODLSKDS");
                 e.printStackTrace();
             }
 
+        }
+
+        int count = 0;
+        for (String c : category) {
+            Category cat = new Category(count, c, categorySetCount.get(count));
+            mViewModel.insert(cat);
+            count++;
         }
     }
 
@@ -96,7 +111,11 @@ public class CategoryActivity extends AppCompatActivity {
 
             is.close();
 
-            json = new String(buffer, StandardCharsets.UTF_8);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                json = new String(buffer, StandardCharsets.UTF_8);
+            } else {
+                json = new String(buffer);
+            }
 
 
         } catch (IOException ex) {

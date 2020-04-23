@@ -59,4 +59,12 @@ public class QuestionRepository {
             mQuestionDao.deleteAll();
         });
     }
+
+    public LiveData<Integer> getQuestionRowCount() {
+        return mQuestionDao.getRowCount();
+    }
+
+    public LiveData<Integer> getQuestionRowCount(int categoryId) {
+        return mQuestionDao.getRowCount(categoryId);
+    }
 }

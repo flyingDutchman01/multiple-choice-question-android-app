@@ -26,4 +26,9 @@ public interface QuestionDao {
     @Query("SELECT * FROM question_table")
     LiveData<List<Question>> getAllQuestions();
 
+    @Query("SELECT COUNT(*) FROM question_table")
+    LiveData<Integer> getRowCount();
+
+    @Query("SELECT COUNT(*) FROM question_table WHERE category_id = :categoryId")
+    LiveData<Integer> getRowCount(int categoryId);
 }
