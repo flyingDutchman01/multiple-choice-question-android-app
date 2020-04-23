@@ -16,7 +16,7 @@
         app:lottie_loop="true" />
 
     <TextView
-        android:id="@+id/highscore"
+        android:id="@+id/appname"
         android:text="@string/Knowledge_Universe"
         android:textSize="20sp"
         android:textColor="@color/black"
