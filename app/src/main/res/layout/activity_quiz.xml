@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:background="@drawable/gradient_background"
     tools:context=".oldfiles.QuizActivity">
 
     <TextView
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +28,7 @@
         android:textSize="20dp"
         android:textColor="@color/black"
         android:freezesText="true"
+        android:layout_marginLeft="16dp"
         />
 
     <TextView
@@ -38,6 +41,7 @@
         android:textColor="@color/black"
         android:textSize="43dp"
         android:freezesText="true"
+        android:layout_marginRight="16dp"
         />
 
     <TextView
@@ -51,12 +55,14 @@
         android:textSize="20dp"
         android:textColor="@color/black"
         android:freezesText="true"
+        android:layout_marginLeft="16dp"
         />
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
         >
 
         <RadioButton
@@ -94,19 +100,16 @@
             />
     </RadioGroup>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/submit_area"
-        android:layout_width="118dp"
-        android:layout_height="67dp"
+        android:layout_width="114dp"
+        android:layout_height="65dp"
         android:layout_below="@+id/radio_group"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="Submit"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:freezesText="true"
-
+        android:textSize="17sp"
+        android:backgroundTint="@color/blue"
         />
-
 
 </RelativeLayout>

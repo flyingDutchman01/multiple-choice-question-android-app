@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@drawable/gradient_background"
     tools:context=".view.activity.MainActivity">
 
     <TextView
@@ -13,31 +14,20 @@
         android:text="MCQ for Fun"
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/highscore"
+        android:layout_centerVertical="true"
         android:textSize="26sp"
         />
 
-    <TextView
-        android:id="@+id/highscore"
-        android:text="High Score: 0"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/first_button"
+        android:layout_width="123dp"
+        android:layout_height="63dp"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        />
-
-    <Button
-        android:id="@+id/first_button"
-        android:layout_width="177dp"
-        android:layout_height="63dp"
-        android:layout_below="@+id/highscore"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
         android:text="Start"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/blue"
         />
 
 </RelativeLayout>

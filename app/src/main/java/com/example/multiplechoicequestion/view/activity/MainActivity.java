@@ -11,12 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.multiplechoicequestion.R;
+import com.example.multiplechoicequestion.room.Category;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int REQUEST_CODE_QUIZ = 1;
+   // private static final int REQUEST_CODE_QUIZ = 1;
 
     public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String KEY_HIGHSCORE ="keyHighScore";
+    //public static final String KEY_HIGHSCORE ="keyHighScore";
 
     private TextView textViewHighScore;
     private int highScore;
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textViewHighScore = findViewById(R.id.highscore);
-        loadHighscore();
+        //textViewHighScore = findViewById(R.id.highscore);
+       // loadHighscore();
 
         Button buttonStartQuiz = findViewById(R.id.first_button);
         buttonStartQuiz.setOnClickListener(new View.OnClickListener() {
@@ -39,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startQuiz(){
-        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-        startActivityForResult(intent, REQUEST_CODE_QUIZ);
+        Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+        startActivity(intent);
     }
-
+/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -73,5 +74,5 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
 
 
-    }
+    } */
 }

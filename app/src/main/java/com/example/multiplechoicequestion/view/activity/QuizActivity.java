@@ -154,7 +154,7 @@ public class QuizActivity extends AppCompatActivity {
             questionCounter++;
             tvQuestionCount.setText("Question: "+ questionCounter + "/"  + questionCountTotal);
             answered= false;
-            buttonConfirmNext.setText("Confirm");
+            buttonConfirmNext.setText("Submit");
 
             timeLeftInMillis = COUNTDOWN_IN_MILLIS;
             startCountDown();
