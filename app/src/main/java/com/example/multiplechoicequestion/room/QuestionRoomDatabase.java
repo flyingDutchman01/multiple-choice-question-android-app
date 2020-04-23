@@ -20,7 +20,7 @@ public abstract class QuestionRoomDatabase extends RoomDatabase {
             QuestionDao dao = INSTANCE.questionDao();
             dao.deleteAll();
 
-            Question q1 = new Question(" नेपालको इतिहासमा गोरे जर्नेल भनेर कसलाई चिनिन्छ ?  ", "जगतजंग", "भीमजंग कुँवर", "रणविर जङ्ग", "जीतजंग कुँवर    ", 2, 2, 1);
+            /*Question q1 = new Question(" नेपालको इतिहासमा गोरे जर्नेल भनेर कसलाई चिनिन्छ ?  ", "जगतजंग", "भीमजंग कुँवर", "रणविर जङ्ग", "जीतजंग कुँवर    ", 2, 2, 1);
             dao.insert(q1);
 
             Question q2 = new Question("नेपाल वायुसेवा निगमको स्थापना कहिले भएको हो ?", "१९९३ जेठ २०", "१९९७ माघ २०", "२०१५ असार १७", " २००६ चैत्र १९", 3, 3, 1);
@@ -78,9 +78,9 @@ public abstract class QuestionRoomDatabase extends RoomDatabase {
 
             Question q19 = new Question("प्रथम विश्व युद्धको क्रममा कति जना नेपालीले भिक्टोरिया क्रस प्राप्त गरेका थिए ? ", "1 जना", "2 जना", "3 जना", "4 जना", 2, 1, 1);
             dao.insert(q19);
-
+*/
             CategoryDao categoryDao = INSTANCE.categoryDao();
-
+            categoryDao.deleteAll();/*
             Category c1 = new Category(1, "Physics", 4);
             categoryDao.insert(c1);
             Category c2 = new Category(2, "Maths", 6);
@@ -91,6 +91,7 @@ public abstract class QuestionRoomDatabase extends RoomDatabase {
             categoryDao.insert(c4);
             Category c5 = new Category(5, "Nepali", 8);
             categoryDao.insert(c5);
+*/
         }
 
         @Override
@@ -101,6 +102,7 @@ public abstract class QuestionRoomDatabase extends RoomDatabase {
       }
     };
 
+
     static QuestionRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (QuestionRoomDatabase.class) {
@@ -108,7 +110,7 @@ public abstract class QuestionRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             QuestionRoomDatabase.class, "question_database")
                             .fallbackToDestructiveMigration()
-                            .addCallback(sRoomDatabaseCallback)
+                            //.addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }

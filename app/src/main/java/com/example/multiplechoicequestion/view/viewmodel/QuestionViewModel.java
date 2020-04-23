@@ -63,4 +63,9 @@ public class QuestionViewModel extends AndroidViewModel {
     public void insert(Category category) {
         mRepository.insert(category);
     }
+
+    public void deleteAll() {
+        mRepository.deleteAll();
+    }
+
 }

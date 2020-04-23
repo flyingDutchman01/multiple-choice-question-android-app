@@ -52,4 +52,11 @@ public class QuestionRepository {
             mCategoryDao.insert(category);
         });
     }
+
+    public void deleteAll() {
+        QuestionRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mCategoryDao.deleteAll();
+            mQuestionDao.deleteAll();
+        });
+    }
 }
