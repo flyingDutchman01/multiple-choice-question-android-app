@@ -17,9 +17,9 @@
 
     <TextView
         android:id="@+id/appname"
-        android:text="@string/Knowledge_Universe"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        android:text="Always Seek Knowledge"
+        android:textSize="30sp"
+        android:textColor="@color/blue"
         android:layout_below="@id/animation_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
