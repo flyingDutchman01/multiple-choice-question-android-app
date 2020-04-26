@@ -26,15 +26,13 @@ public class AnswerListAdapter extends RecyclerView.Adapter<AnswerListAdapter.Se
     @NonNull
     @Override
     public AnswerListAdapter.SetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.question_recyclerview_item, parent, false);
+        View itemView = mInflater.inflate(R.layout.answerlist, parent, false);
         return new SetViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AnswerListAdapter.SetViewHolder holder, int position) {
         String answer = "";
-        System.out.println(mQuestions.get(position).getAnswerNr() == 1);
-
         switch (mQuestions.get(position).getAnswerNr()) {
             case 1:
                 answer = mQuestions.get(position).getOption1();
@@ -48,12 +46,11 @@ public class AnswerListAdapter extends RecyclerView.Adapter<AnswerListAdapter.Se
             case 4:
                 answer = mQuestions.get(position).getOption4();
                 break;
-            default:
-                answer = "No Answer Found";
 
         }
         if (mQuestions != null) {
-            holder.wordItemView.setText(mQuestions.get(position).getQuestion() + "\n" + answer);
+            holder.wordItemView.setText(mQuestions.get(position).getQuestion() + "\n"
+                    + answer);
         } else {
             holder.wordItemView.setText("No Word");
         }
@@ -80,7 +77,7 @@ public class AnswerListAdapter extends RecyclerView.Adapter<AnswerListAdapter.Se
 
         public SetViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.wordItemView = itemView.findViewById(R.id.textView);
+            this.wordItemView = itemView.findViewById(R.id.textView1);
 
         }
     }
