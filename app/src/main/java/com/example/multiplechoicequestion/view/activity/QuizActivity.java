@@ -21,7 +21,6 @@ import com.example.multiplechoicequestion.R;
 import com.example.multiplechoicequestion.room.CategoricalQuestion;
 import com.example.multiplechoicequestion.room.Question;
 import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 

@@ -15,32 +15,33 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multiplechoicequestion.R;
-import com.example.multiplechoicequestion.room.Category;
+import com.example.multiplechoicequestion.room.CategoricalQuestion;
 import com.example.multiplechoicequestion.view.activity.CategoryActivity;
-import com.example.multiplechoicequestion.view.adapter.SetListAdapter;
+import com.example.multiplechoicequestion.view.adapter.AnswerListAdapter;
 import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
 
 import java.util.List;
 
-public class SetFragment extends Fragment {
+public class AnswerFragment extends Fragment {
 
-    private QuestionViewModel mViewModel;
-    private SetListAdapter adapater;
-    private int mCategoryIndex = 0;
     final String CAREGORY_INDEX = "categoryIndex";
+    private QuestionViewModel mViewModel;
+    private AnswerListAdapter adapater;
     private TextView textView;
-    public static SetFragment newInstance() {
-        return new SetFragment();
+    private int mCategoryIndex = 0;
+
+    public static AnswerFragment newInstance() {
+        return new AnswerFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.set_fragment, container, false);
+        View view = inflater.inflate(R.layout.answer_fragment, container, false);
         textView = view.findViewById(R.id.title);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
-        adapater = new SetListAdapter(getContext());
+        adapater = new AnswerListAdapter(getContext());
         recyclerView.setAdapter(adapater);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -50,20 +51,17 @@ public class SetFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        textView.setText("SET");
+        textView.setText("Solutions");
         if (savedInstanceState == null) {
             mCategoryIndex = ((CategoryActivity) getActivity()).categoryID;
         } else {
             mCategoryIndex = savedInstanceState.getInt(CAREGORY_INDEX);
         }
         mViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
-        mViewModel.getAllCategories().observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
+        mViewModel.getAllCategoricalQuestions().observe(getViewLifecycleOwner(), new Observer<List<CategoricalQuestion>>() {
             @Override
-            public void onChanged(List<Category> categories) {
-                System.out.println("Category INdex" + mCategoryIndex);
-                System.out.println(" " + categories.size());
-
-                adapater.setCategory(categories.get(mCategoryIndex));
+            public void onChanged(List<CategoricalQuestion> questionList) {
+                adapater.setQuestions(questionList.get(mCategoryIndex).questionList);
             }
         });
 

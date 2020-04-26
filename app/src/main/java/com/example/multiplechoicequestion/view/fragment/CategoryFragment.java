@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +26,7 @@ public class CategoryFragment extends Fragment {
 
     private QuestionViewModel mViewModel;
     private CategoryListAdapter adapater;
+    private ToggleButton toggleButton;
 
     public static CategoryFragment newInstance() {
         return new CategoryFragment();
@@ -34,11 +37,18 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.category_fragment, container, false);
+        toggleButton = view.findViewById(R.id.toggleButton);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         adapater = new CategoryListAdapter(getContext(), getParentFragmentManager());
         recyclerView.setAdapter(adapater);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                adapater.setChecked(isChecked);
+            }
+        });
         return view;
     }
 
@@ -46,7 +56,7 @@ public class CategoryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
-        mViewModel.getAllCategories().observe(getActivity(), new Observer<List<Category>>() {
+        mViewModel.getAllCategories().observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
                 adapater.setCategories(categories);

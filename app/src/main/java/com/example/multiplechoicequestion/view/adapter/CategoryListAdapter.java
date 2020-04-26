@@ -15,6 +15,7 @@ import com.example.multiplechoicequestion.room.CategoricalQuestion;
 import com.example.multiplechoicequestion.room.Category;
 import com.example.multiplechoicequestion.room.Question;
 import com.example.multiplechoicequestion.view.activity.CategoryActivity;
+import com.example.multiplechoicequestion.view.fragment.AnswerFragment;
 import com.example.multiplechoicequestion.view.fragment.SetFragment;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     private List<Category> mCategories;
     private List<CategoricalQuestion> mCategoricalQuestion;
     private FragmentManager fragmentManager;
+    private boolean isChecked = true;
 
     public CategoryListAdapter(Context context, FragmentManager fragmentManager) {
         mInflater = LayoutInflater.from(context);
@@ -68,12 +70,21 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         holder.categoryItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SetFragment setFragment = new SetFragment();
-                activity.categoryID = position;
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, setFragment)
-                        .addToBackStack("Stack")
-                        .commit();
+                if (isChecked) {
+                    SetFragment setFragment = new SetFragment();
+                    activity.categoryID = position;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, setFragment)
+                            .addToBackStack("Stack")
+                            .commit();
+                } else {
+                    AnswerFragment answerFragment = new AnswerFragment();
+                    activity.categoryID = position;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, answerFragment)
+                            .addToBackStack("Stack")
+                            .commit();
+                }
             }
         });
     }
@@ -93,6 +104,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         notifyDataSetChanged();
     }
 
+    public void setChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
     @Override
     public int getItemCount() {
         /*if(mQuestions != null)

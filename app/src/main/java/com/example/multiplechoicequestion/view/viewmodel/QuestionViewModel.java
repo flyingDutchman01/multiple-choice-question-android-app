@@ -44,6 +44,7 @@ public class QuestionViewModel extends AndroidViewModel {
         return mAllCategory;
     }
 
+
     public LiveData<List<CategoricalQuestion>> getAllCategoricalQuestions() {
         if (mAllCategory == null) {
             mAllCategoricalQuestion = mRepository.getAllCategoricalQuestions();
