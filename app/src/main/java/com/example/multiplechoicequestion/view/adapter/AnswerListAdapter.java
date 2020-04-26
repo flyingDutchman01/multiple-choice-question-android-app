@@ -45,9 +45,7 @@ public class AnswerListAdapter extends RecyclerView.Adapter<AnswerListAdapter.Se
 
         }
         if (mQuestions != null) {
-            holder.wordItemView.setText(mQuestions.get(position).getQuestion() + "\n"
-                    + answer
-            );
+            holder.wordItemView.setText(mQuestions.get(position).getQuestion() + "\n" + answer);
         } else {
             holder.wordItemView.setText("No Word");
         }

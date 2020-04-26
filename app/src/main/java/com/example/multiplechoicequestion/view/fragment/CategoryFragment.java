@@ -36,10 +36,14 @@ public class CategoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+
         View view = inflater.inflate(R.layout.category_fragment, container, false);
         toggleButton = view.findViewById(R.id.toggleButton);
+
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         adapater = new CategoryListAdapter(getContext(), getParentFragmentManager());
+
         recyclerView.setAdapter(adapater);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
