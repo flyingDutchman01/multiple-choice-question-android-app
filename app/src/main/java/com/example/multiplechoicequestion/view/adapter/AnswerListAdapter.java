@@ -33,15 +33,23 @@ public class AnswerListAdapter extends RecyclerView.Adapter<AnswerListAdapter.Se
     @Override
     public void onBindViewHolder(@NonNull AnswerListAdapter.SetViewHolder holder, int position) {
         String answer = "";
+        System.out.println(mQuestions.get(position).getAnswerNr() == 1);
+
         switch (mQuestions.get(position).getAnswerNr()) {
             case 1:
                 answer = mQuestions.get(position).getOption1();
+                break;
             case 2:
                 answer = mQuestions.get(position).getOption2();
+                break;
             case 3:
                 answer = mQuestions.get(position).getOption3();
+                break;
             case 4:
                 answer = mQuestions.get(position).getOption4();
+                break;
+            default:
+                answer = "No Answer Found";
 
         }
         if (mQuestions != null) {
