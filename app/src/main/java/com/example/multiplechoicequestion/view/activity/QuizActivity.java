@@ -21,6 +21,9 @@ import com.example.multiplechoicequestion.R;
 import com.example.multiplechoicequestion.room.CategoricalQuestion;
 import com.example.multiplechoicequestion.room.Question;
 import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,6 +68,8 @@ public class QuizActivity extends AppCompatActivity {
     private long backPressedTime;
     private int categoryIndex;
     private int setNr;
+
+    private InterstitialAd interstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +138,15 @@ public class QuizActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //interstetialAd
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId(getString(R.string.interstetial_ad_unit_id));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        interstitialAd.loadAd(adRequest);
+
+
 
     }
 
@@ -245,10 +259,12 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void finishQuiz(){
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(EXTRA_SCORE,score);
-        setResult(RESULT_OK, resultIntent);
-        finish();
+            interstitialAd.show();
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra(EXTRA_SCORE,score);
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
+
     }
 
     @Override
