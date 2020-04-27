@@ -4,45 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@color/white"
     tools:context=".oldfiles.QuizActivity">
 
-    <TextView
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Score: 0"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:freezesText="true"
-        />
 
-    <TextView
-        android:id="@+id/question_number"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/score"
-        android:text="Question: 1/x"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:freezesText="true"
-        android:layout_marginLeft="16dp"
-        />
+        android:background="@color/green"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_countdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="00:30"
-        android:textColor="@color/black"
-        android:textSize="43dp"
-        android:freezesText="true"
-        android:layout_marginRight="16dp"
-        />
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score: 0"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:freezesText="true"
+                />
+
+
+            <TextView
+                android:id="@+id/question_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/score"
+                android:text="Question: 1/x"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:freezesText="true"
+                android:layout_marginLeft="16dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="00:30"
+                android:textColor="@color/white"
+                android:textSize="43dp"
+                android:freezesText="true"
+                android:layout_marginRight="16dp"
+
+                />
+
+
+        </RelativeLayout>
+
+
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
 
     <TextView
         android:id="@+id/question_text"
@@ -109,7 +134,7 @@
         android:layout_marginTop="20dp"
         android:text="Submit"
         android:textSize="17sp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="#03DAC5"
         />
 
 </RelativeLayout>

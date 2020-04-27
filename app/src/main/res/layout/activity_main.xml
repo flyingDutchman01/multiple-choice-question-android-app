@@ -16,7 +16,7 @@
         android:layout_centerInParent="true"
         android:layout_marginBottom="10dp"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="book.json"
+        app:lottie_fileName="book1.json"
         app:lottie_loop="true" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MCQ for Fun"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textSize="26sp"
@@ -39,7 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Start"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/green"
         android:transitionName="shared_container"
         />
 
