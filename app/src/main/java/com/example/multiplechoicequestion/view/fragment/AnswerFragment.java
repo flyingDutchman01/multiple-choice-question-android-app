@@ -51,7 +51,7 @@ public class AnswerFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        textView.setText("Solutions");
+        //textView.setText("Solutions");
         if (savedInstanceState == null) {
             mCategoryIndex = ((CategoryActivity) getActivity()).categoryID;
         } else {

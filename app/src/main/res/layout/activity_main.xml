@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
-    android:background="@drawable/gradient_background"
+    android:background="@color/white"
     tools:context=".view.activity.MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MCQ for Fun"
-        android:textColor="@color/white"
+        android:textColor="@color/blue"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textSize="26sp"
@@ -39,7 +39,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Start"
-        android:backgroundTint="@color/green"
+        android:textColor="@color/blue"
+        android:backgroundTint="@color/yellowish"
         android:transitionName="shared_container"
         />
 
