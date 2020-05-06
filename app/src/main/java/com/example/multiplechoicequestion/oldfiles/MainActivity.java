@@ -1,4 +1,4 @@
-package com.example.multiplechoicequestion.view.activity;
+package com.example.multiplechoicequestion.oldfiles;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.multiplechoicequestion.R;
+import com.example.multiplechoicequestion.view.activity.CategoryActivity;
 
 public class MainActivity extends AppCompatActivity {
    // private static final int REQUEST_CODE_QUIZ = 1;

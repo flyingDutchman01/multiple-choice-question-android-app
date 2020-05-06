@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/startingFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
-    android:background="@color/white"
-    tools:context=".oldfiles.MainActivity">
+    tools:context=".view.fragment.StartingFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
@@ -43,6 +42,24 @@
         android:backgroundTint="@color/yellowish"
         android:transitionName="shared_container"
         />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_below="@+id/first_button"
+        android:layout_width="123dp"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/cardview_default_elevation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:background="@color/spaceBlue"
+        android:checked="true"
+        android:textOff="Study Mode"
+        android:textOn="Quiz Mode"
+
+        />
+
 
     <FrameLayout
         android:id="@+id/bannerContainer"

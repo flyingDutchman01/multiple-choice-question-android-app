@@ -7,9 +7,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.example.multiplechoicequestion.R;
 import com.example.multiplechoicequestion.room.Category;
 import com.example.multiplechoicequestion.room.Question;
+import com.example.multiplechoicequestion.view.fragment.StartingFragment;
 import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
 
 import org.json.JSONException;
@@ -26,6 +29,8 @@ import java.util.List;
 public class SplashActivity extends Activity {
 
     Handler handler;
+    FragmentManager fragmentManager;
+    StartingFragment startingFragment;
 
 
     QuestionViewModel mViewModel;
@@ -34,11 +39,13 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashfile);
 
+
         handler=new Handler();
         handler.postDelayed(new Runnable() {
+
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, CategoryActivity.class);
                 startActivity(intent);
                 finish();
             }

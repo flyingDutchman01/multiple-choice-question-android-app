@@ -22,7 +22,7 @@ import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
 
 import java.util.List;
 
-public class AnswerFragment extends Fragment {
+public class  AnswerFragment extends Fragment {
 
     final String CAREGORY_INDEX = "categoryIndex";
     private QuestionViewModel mViewModel;

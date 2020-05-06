@@ -6,4 +6,7 @@
     <string name="Knowledge_Universe" />
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstetial_ad_unit_id">ca-app-pub-3940256099942544/8691691433</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
