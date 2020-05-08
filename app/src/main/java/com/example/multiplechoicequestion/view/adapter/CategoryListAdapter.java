@@ -29,6 +29,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     private List<CategoricalQuestion> mCategoricalQuestion;
     private FragmentManager fragmentManager;
     private boolean isChecked = true;
+    private int value = 0;
 
     public CategoryListAdapter(Context context, FragmentManager fragmentManager) {
         mInflater = LayoutInflater.from(context);
@@ -70,7 +71,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         holder.categoryItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isChecked) {
+                if (value == 0) {
                     SetFragment setFragment = new SetFragment();
                     activity.categoryID = position;
                     fragmentManager.beginTransaction()
@@ -104,9 +105,11 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         notifyDataSetChanged();
     }
 
-    public void setChecked(boolean isChecked) {
-        this.isChecked = isChecked;
+    //value transferring function
+    public void setChecked(int v) {
+        value = v;
     }
+
     @Override
     public int getItemCount() {
         /*if(mQuestions != null)

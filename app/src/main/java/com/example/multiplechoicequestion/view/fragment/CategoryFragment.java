@@ -26,7 +26,7 @@ public class CategoryFragment extends Fragment {
 
     private QuestionViewModel mViewModel;
     private CategoryListAdapter adapater;
-    private ToggleButton toggleButton;
+    //  private ToggleButton toggleButton;
 
     public static CategoryFragment newInstance() {
         return new CategoryFragment();
@@ -39,20 +39,25 @@ public class CategoryFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.category_fragment, container, false);
-        toggleButton = view.findViewById(R.id.toggleButton);
+        //  toggleButton = view.findViewById(R.id.toggleButton);
+        adapater = new CategoryListAdapter(getContext(), getParentFragmentManager());
+
+        Bundle b = getArguments();//taking arguments from startingFragment
+        int value = b.getInt("radio");
+        adapater.setChecked(value);//transfering value
+
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
-        adapater = new CategoryListAdapter(getContext(), getParentFragmentManager());
 
         recyclerView.setAdapter(adapater);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                adapater.setChecked(isChecked);
-            }
-        });
+//        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                adapater.setChecked(isChecked);
+//            }
+//        });
         return view;
     }
 

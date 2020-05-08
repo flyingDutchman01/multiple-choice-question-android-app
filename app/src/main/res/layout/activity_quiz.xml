@@ -12,23 +12,22 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green"
-        >
+        android:background="@color/green">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
                 android:id="@+id/score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:freezesText="true"
                 android:text="Score: 0"
                 android:textColor="@color/white"
-                android:textSize="25dp"
-                android:freezesText="true"
-                />
+                android:textSize="25dp" />
 
 
             <TextView
@@ -36,23 +35,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/score"
-                android:text="Question: 1/x"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:freezesText="true"
                 android:layout_marginLeft="16dp"
-                />
+                android:freezesText="true"
+                android:text="Question: 1/x"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tv_countdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_marginRight="16dp"
+                android:freezesText="true"
                 android:text="00:30"
                 android:textColor="@color/white"
                 android:textSize="43dp"
-                android:freezesText="true"
-                android:layout_marginRight="16dp"
 
                 />
 
@@ -60,13 +58,7 @@
         </RelativeLayout>
 
 
-
-
-
     </com.google.android.material.appbar.AppBarLayout>
-
-
-
 
 
     <TextView
@@ -74,55 +66,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/radio_group"
-        android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
-        android:text="1.तलका मध्ये कुन बादलको प्रकार होइन ?"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:freezesText="true"
         android:layout_marginLeft="16dp"
-        />
+        android:layout_marginBottom="20dp"
+        android:freezesText="true"
+        android:text="1.तलका मध्ये कुन बादलको प्रकार होइन ?"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        >
+        android:layout_marginLeft="16dp">
 
         <RadioButton
             android:id="@+id/radio_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="option1"
-            android:textSize="20dp"
             android:freezesText="true"
-            />
+            android:text="option1"
+            android:textSize="20dp" />
 
         <RadioButton
             android:id="@+id/radio_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="option2"
-            android:textSize="20dp"
             android:freezesText="true"
-            />
+            android:text="option2"
+            android:textSize="20dp" />
+
         <RadioButton
             android:id="@+id/radio_button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="option3"
-            android:textSize="20dp"
             android:freezesText="true"
-            />
+            android:text="option3"
+            android:textSize="20dp" />
+
         <RadioButton
             android:id="@+id/radio_button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="option4"
-            android:textSize="20dp"
             android:freezesText="true"
-            />
+            android:text="option4"
+            android:textSize="20dp" />
     </RadioGroup>
 
     <com.google.android.material.button.MaterialButton
@@ -132,9 +121,8 @@
         android:layout_below="@+id/radio_group"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Submit"
-        android:textSize="17sp"
         android:backgroundTint="#03DAC5"
-        />
+        android:text="Submit"
+        android:textSize="17sp" />
 
 </RelativeLayout>

@@ -29,12 +29,49 @@
         android:textSize="26sp"
         />
 
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <RadioButton
+                android:id="@+id/radio_button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiz mode"
+                android:textSize="17dp"
+                android:layout_margin="10dp"
+                android:freezesText="true"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Study mode"
+                android:textSize="17dp"
+                android:layout_margin="10dp"
+                android:freezesText="true"
+                />
+        </LinearLayout>
+
+
+    </RadioGroup>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/first_button"
         android:layout_width="123dp"
         android:layout_height="63dp"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/radio"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Start"
@@ -43,22 +80,7 @@
         android:transitionName="shared_container"
         />
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_below="@+id/first_button"
-        android:layout_width="123dp"
-        android:layout_height="60dp"
-        android:layout_margin="@dimen/cardview_default_elevation"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:background="@color/spaceBlue"
-        android:checked="true"
-        android:textOff="Study Mode"
-        android:textOn="Quiz Mode"
 
-        />
 
 
     <FrameLayout

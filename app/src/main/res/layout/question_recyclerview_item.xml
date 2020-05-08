@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     >
 
 
@@ -16,7 +17,9 @@
         android:layout_width="fill_parent"
         android:layout_height="90dp"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/yellowish"
+        android:background="#e8ef58"
+        app:strokeColor="@color/yellow"
+        app:strokeWidth="0.8dp"
         app:cardCornerRadius="10dp">
 
 
@@ -26,7 +29,7 @@
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:gravity="center"
-            android:textColor="@color/bluish"
+            android:textColor="@color/black"
             tools:text="Hello" />
 
     </com.google.android.material.card.MaterialCardView

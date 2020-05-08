@@ -19,30 +19,11 @@
         android:layout_margin="20dp"
         />
 
-    <ToggleButton
-
-        android:id="@+id/toggleButton"
-        android:layout_below="@+id/title"
-        android:layout_width="136dp"
-        android:layout_height="61dp"
-        android:layout_margin="@dimen/cardview_default_elevation"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:background="@color/spaceBlue"
-        android:checked="true"
-        android:textOff="Study Mode"
-        android:textOn="Quiz Mode"
-
-
-        ></ToggleButton>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/toggleButton"
+        android:layout_below="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CategoryFragment" />
