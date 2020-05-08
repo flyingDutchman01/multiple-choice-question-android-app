@@ -35,6 +35,7 @@
         android:textOff="Study Mode"
         android:textOn="Quiz Mode"
 
+
         ></ToggleButton>
 
 
