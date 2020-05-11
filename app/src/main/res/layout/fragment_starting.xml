@@ -37,10 +37,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         >
-        <LinearLayout
+      <!--  <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            /> -->
 
             <RadioButton
                 android:id="@+id/radio_button1"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="Quiz mode"
                 android:textSize="17dp"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
                 android:freezesText="true"
                 />
 
@@ -58,12 +58,8 @@
                 android:layout_height="wrap_content"
                 android:text="Study mode"
                 android:textSize="17dp"
-                android:layout_margin="10dp"
-                android:freezesText="true"
+                android:layout_marginTop="10dp"
                 />
-        </LinearLayout>
-
-
     </RadioGroup>
 
 

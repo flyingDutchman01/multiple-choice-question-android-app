@@ -1,6 +1,7 @@
 package com.example.multiplechoicequestion.view.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     private List<CategoricalQuestion> mCategoricalQuestion;
     private FragmentManager fragmentManager;
     private boolean isChecked = true;
-    private int value = 0;
+    private int value;
 
     public CategoryListAdapter(Context context, FragmentManager fragmentManager) {
         mInflater = LayoutInflater.from(context);
@@ -108,6 +109,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     //value transferring function
     public void setChecked(int v) {
         value = v;
+        Log.i("value456",String.valueOf(v));
     }
 
     @Override

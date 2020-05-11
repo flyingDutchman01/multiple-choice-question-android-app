@@ -27,7 +27,7 @@ public class StartingFragment extends Fragment {
     RadioButton radioButton1;
     RadioButton radioButton2;
     int radioChecked;
-   private  boolean answered=true;
+   //private  boolean answered=true;
 
 
     @Override
@@ -50,28 +50,39 @@ public class StartingFragment extends Fragment {
         categoryFragment = new CategoryFragment();
 
         //radio button fnunctions
-        rbSelected = v.findViewById(radioGroup.getCheckedRadioButtonId());
-        radioChecked = radioGroup.indexOfChild(rbSelected);
-        Bundle args = new Bundle();// bundle stuffs
-        args.putInt("radio", radioChecked);
-        categoryFragment.setArguments(args);
+//        rbSelected = v.findViewById(radioGroup.getCheckedRadioButtonId());
+//        radioChecked = radioGroup.indexOfChild(rbSelected);
+//        Log.i("value789",String.valueOf(radioChecked));
+
+
 
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                radioGroup.clearCheck();
-                if(answered){
-                    if(radioButton1.isChecked() || radioButton2.isChecked()){
+
+                    if(radioButton1.isChecked()){
+                        Bundle args = new Bundle();// bundle stuffs
+                        args.putInt("radio", 0);
+                        categoryFragment.setArguments(args);
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, categoryFragment)
                                 .addToBackStack("Stack")
                                 .commit();
+                    }else if(radioButton2.isChecked()){
+                        Bundle args = new Bundle();// bundle stuffs
+                        args.putInt("radio", 1);
+                        categoryFragment.setArguments(args);
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, categoryFragment)
+                                .addToBackStack("Stack")
+                                .commit();
+
                     }else{
                         Toast.makeText(getContext(),"Please press a button",Toast.LENGTH_SHORT).show();
                     }
-                }
+                radioGroup.clearCheck();
 
             }
         });

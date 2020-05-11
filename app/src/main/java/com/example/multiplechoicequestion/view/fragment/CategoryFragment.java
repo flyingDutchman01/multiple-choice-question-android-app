@@ -1,6 +1,7 @@
 package com.example.multiplechoicequestion.view.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class CategoryFragment extends Fragment {
 
         Bundle b = getArguments();//taking arguments from startingFragment
         int value = b.getInt("radio");
+        Log.i("value123",String.valueOf(value));
         adapater.setChecked(value);//transfering value
 
 
