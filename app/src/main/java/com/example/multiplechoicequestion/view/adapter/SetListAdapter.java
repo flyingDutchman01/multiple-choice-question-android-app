@@ -17,6 +17,7 @@ import com.example.multiplechoicequestion.room.Category;
 import com.example.multiplechoicequestion.view.activity.CategoryActivity;
 import com.example.multiplechoicequestion.view.activity.QuizActivity;
 import com.example.multiplechoicequestion.view.activity.RapidActivity;
+import com.example.multiplechoicequestion.view.activity.SplashActivity;
 
 import static com.example.multiplechoicequestion.view.activity.QuizActivity.CATEGORY_ID;
 import static com.example.multiplechoicequestion.view.activity.QuizActivity.SET_NR;
@@ -85,6 +86,7 @@ public class SetListAdapter extends RecyclerView.Adapter<SetListAdapter.SetViewH
 
     public void setChecked(int v) {
         value = v;
+        System.out.println("Value"+ v);
         Log.i("value456",String.valueOf(v));
     }
 

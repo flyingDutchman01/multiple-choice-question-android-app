@@ -55,7 +55,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
         if (mCategories != null) {
             Category current = mCategories.get(position);
-            holder.categoryItemView.setText(current.getCategoryName());
+            if (current.getCategoryName() != "Rapid Fire") {
+                holder.categoryItemView.setText(current.getCategoryName());
+            }
         } else { /*if(mCategoricalQuestion != null){
             CategoricalQuestion current = mCategoricalQuestion.get(position);
             String q = "";

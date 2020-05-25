@@ -47,10 +47,14 @@ public class SetFragment extends Fragment {
 
 
         Bundle b = getArguments();//taking arguments from startingFragment
-        int value = b.getInt("radio1");
-        Log.i("value123",String.valueOf(value));
-        adapater.setChecked(value);//transfering value
 
+        if (b != null) {
+            int value = b.getInt("radio");
+            System.out.println("VALUE: " + value);
+            Log.i("value123", String.valueOf(value));
+            adapater.setChecked(value);//transfering value
+            mCategoryIndex = 10;
+        }
         return view;
     }
 
@@ -64,6 +68,7 @@ public class SetFragment extends Fragment {
             mCategoryIndex = savedInstanceState.getInt(CAREGORY_INDEX);
         }
         mViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
+        System.out.println("Help: "+mCategoryIndex);
         mViewModel.getAllCategories().observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
