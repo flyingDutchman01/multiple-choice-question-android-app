@@ -22,10 +22,12 @@ public class StartingFragment extends Fragment {
     Button button;
     FragmentManager fragmentManager;
     CategoryFragment categoryFragment;
+    SetFragment setFragment;
     RadioGroup radioGroup;
     RadioButton rbSelected;
     RadioButton radioButton1;
     RadioButton radioButton2;
+    RadioButton radioButton3;
     int radioChecked;
    //private  boolean answered=true;
 
@@ -45,9 +47,11 @@ public class StartingFragment extends Fragment {
         radioGroup = v.findViewById(R.id.radio);
         radioButton1 = v.findViewById(R.id.radio_button1);
         radioButton2 = v.findViewById(R.id.radio_button2);
+        radioButton3 = v.findViewById(R.id.radio_button3);
 
         fragmentManager = getParentFragmentManager();
         categoryFragment = new CategoryFragment();
+        setFragment = new SetFragment();
 
         //radio button fnunctions
 //        rbSelected = v.findViewById(radioGroup.getCheckedRadioButtonId());
@@ -79,7 +83,18 @@ public class StartingFragment extends Fragment {
                                 .addToBackStack("Stack")
                                 .commit();
 
-                    }else{
+                    }
+                    else if(radioButton3.isChecked()){
+                        Bundle args = new Bundle();// bundle stuffs
+                        args.putInt("radio", 2);
+                        setFragment.setArguments(args);
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, setFragment)
+                                .addToBackStack("Stack")
+                                .commit();
+
+                    }
+                    else{
                         Toast.makeText(getContext(),"Please press a button",Toast.LENGTH_SHORT).show();
                     }
                 radioGroup.clearCheck();

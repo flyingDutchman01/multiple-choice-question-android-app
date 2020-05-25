@@ -2,18 +2,21 @@ package com.example.multiplechoicequestion.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multiplechoicequestion.R;
 import com.example.multiplechoicequestion.room.Category;
 import com.example.multiplechoicequestion.view.activity.CategoryActivity;
 import com.example.multiplechoicequestion.view.activity.QuizActivity;
+import com.example.multiplechoicequestion.view.activity.RapidActivity;
 
 import static com.example.multiplechoicequestion.view.activity.QuizActivity.CATEGORY_ID;
 import static com.example.multiplechoicequestion.view.activity.QuizActivity.SET_NR;
@@ -23,6 +26,8 @@ public class SetListAdapter extends RecyclerView.Adapter<SetListAdapter.SetViewH
     private final LayoutInflater mInflater;
     private Category mCategory;
     private CategoryActivity activity;
+    private int value;
+    private FragmentManager fragmentManager;
 
     public SetListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -48,11 +53,20 @@ public class SetListAdapter extends RecyclerView.Adapter<SetListAdapter.SetViewH
         holder.wordItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.setNr = position + 1;
-                Intent i = new Intent(activity, QuizActivity.class);
-                i.putExtra(CATEGORY_ID, activity.categoryID);
-                i.putExtra(SET_NR, activity.setNr);
-                activity.startActivity(i);
+
+                if(value==2){
+                    activity.setNr = position + 1;
+                    Intent i = new Intent(activity, RapidActivity.class);
+                    i.putExtra(CATEGORY_ID, 10);
+                    i.putExtra(SET_NR, activity.setNr);
+                    activity.startActivity(i);
+                }else{
+                    activity.setNr = position + 1;
+                    Intent i = new Intent(activity, QuizActivity.class);
+                    i.putExtra(CATEGORY_ID, activity.categoryID);
+                    i.putExtra(SET_NR, activity.setNr);
+                    activity.startActivity(i);
+                }
             }
         });
     }
@@ -67,6 +81,11 @@ public class SetListAdapter extends RecyclerView.Adapter<SetListAdapter.SetViewH
         if (mCategory != null)
             return mCategory.getSetAmount();
         else return 0;
+    }
+
+    public void setChecked(int v) {
+        value = v;
+        Log.i("value456",String.valueOf(v));
     }
 
     class SetViewHolder extends RecyclerView.ViewHolder {

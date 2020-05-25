@@ -60,6 +60,15 @@
                 android:textSize="17dp"
                 android:layout_marginTop="10dp"
                 />
+
+        <RadioButton
+            android:id="@+id/radio_button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rapid mode"
+            android:textSize="17dp"
+            android:layout_marginTop="10dp"
+            />
     </RadioGroup>
 
 

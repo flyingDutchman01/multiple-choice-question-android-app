@@ -87,6 +87,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                             .addToBackStack("Stack")
                             .commit();
                 }
+
+
+
             }
         });
     }
