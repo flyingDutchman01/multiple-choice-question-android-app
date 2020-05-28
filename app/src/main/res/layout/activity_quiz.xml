@@ -4,19 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/g1"
     tools:context=".oldfiles.QuizActivity">
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/green">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
 
             <TextView
                 android:id="@+id/score"
@@ -26,7 +19,7 @@
                 android:layout_marginTop="10dp"
                 android:freezesText="true"
                 android:text="Score: 0"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:textSize="25dp" />
 
 
@@ -38,7 +31,7 @@
                 android:layout_marginLeft="16dp"
                 android:freezesText="true"
                 android:text="Question: 1/x"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:textSize="20dp" />
 
             <TextView
@@ -46,29 +39,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
                 android:freezesText="true"
                 android:text="00:30"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:textSize="43dp"
 
                 android:layout_alignParentRight="true" />
 
 
-        </RelativeLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+
+
 
     <androidx.cardview.widget.CardView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/card"
-        android:layout_marginTop="170dp"
-        android:layout_below="@id/appbar"
+        android:layout_below="@+id/tv_countdown"
+        android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/yellowish"
         app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/bluishi"
         android:layout_marginBottom="10dp"
+        android:padding="10dp"
         >
 
         <TextView
@@ -89,7 +84,7 @@
 
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn1"
         android:layout_below="@id/card"
         android:layout_width="250dp"
@@ -100,9 +95,11 @@
         android:textSize="20dp"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
+        app:backgroundTint="@color/yellowish"
+        app:cornerRadius="10dp"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn2"
         android:layout_below="@id/btn1"
         android:layout_width="250dp"
@@ -112,9 +109,11 @@
         android:text="option2"
         android:textSize="20dp"
         android:textColor="@color/black"
+        app:backgroundTint="@color/yellowish"
+        app:cornerRadius="10dp"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn3"
         android:layout_below="@+id/btn2"
         android:layout_centerHorizontal="true"
@@ -124,9 +123,11 @@
         android:text="option3"
         android:textSize="20dp"
         android:textColor="@color/black"
+        app:backgroundTint="@color/yellowish"
+        app:cornerRadius="10dp"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn4"
         android:layout_below="@+id/btn3"
         android:layout_width="250dp"
@@ -136,6 +137,8 @@
         android:text="option4"
         android:textSize="20dp"
         android:textColor="@color/black"
+        app:backgroundTint="@color/yellowish"
+        app:cornerRadius="10dp"
         />
 
 
