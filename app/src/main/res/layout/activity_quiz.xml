@@ -11,7 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:background="@color/green">
 
         <RelativeLayout
@@ -46,83 +46,99 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="16dp"
                 android:freezesText="true"
                 android:text="00:30"
                 android:textColor="@color/white"
                 android:textSize="43dp"
 
-                />
+                android:layout_alignParentRight="true" />
 
 
         </RelativeLayout>
-
-
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <TextView
-        android:id="@+id/question_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/radio_group"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="20dp"
-        android:freezesText="true"
-        android:text="1.तलका मध्ये कुन बादलको प्रकार होइन ?"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
-
-    <RadioGroup
-        android:id="@+id/radio_group"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp">
-
-        <RadioButton
-            android:id="@+id/radio_button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:freezesText="true"
-            android:text="option1"
-            android:textSize="20dp" />
-
-        <RadioButton
-            android:id="@+id/radio_button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:freezesText="true"
-            android:text="option2"
-            android:textSize="20dp" />
-
-        <RadioButton
-            android:id="@+id/radio_button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:freezesText="true"
-            android:text="option3"
-            android:textSize="20dp" />
-
-        <RadioButton
-            android:id="@+id/radio_button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:freezesText="true"
-            android:text="option4"
-            android:textSize="20dp" />
-    </RadioGroup>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/submit_area"
-        android:layout_width="114dp"
-        android:layout_height="65dp"
-        android:layout_below="@+id/radio_group"
+        android:id="@+id/card"
+        android:layout_marginTop="170dp"
+        android:layout_below="@id/appbar"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/yellowish"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/radio_group"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:freezesText="true"
+            android:text="1.तलका मध्ये कुन बादलको प्रकार होइन ?"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_below="@id/card"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:freezesText="true"
+        android:layout_centerHorizontal="true"
+        android:text="option1"
+        android:textSize="20dp"
+        android:textColor="@color/black"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#03DAC5"
-        android:text="Submit"
-        android:textSize="17sp" />
+        />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_below="@id/btn1"
+        android:layout_width="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:freezesText="true"
+        android:text="option2"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_below="@+id/btn2"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:freezesText="true"
+        android:text="option3"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:id="@+id/btn4"
+        android:layout_below="@+id/btn3"
+        android:layout_width="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:freezesText="true"
+        android:text="option4"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        />
+
+
+
 
 </RelativeLayout>
