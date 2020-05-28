@@ -93,6 +93,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
 
             }
+
         });
     }
 

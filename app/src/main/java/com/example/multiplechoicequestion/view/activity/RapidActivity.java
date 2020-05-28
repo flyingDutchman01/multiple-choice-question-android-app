@@ -1,16 +1,21 @@
 package com.example.multiplechoicequestion.view.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.animation.Animator;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,6 +28,7 @@ import com.example.multiplechoicequestion.room.Question;
 import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,24 +36,22 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class RapidActivity extends AppCompatActivity {
+public class RapidActivity extends AppCompatActivity implements View.OnClickListener{
     private QuestionViewModel mViewModel;
 
     public static final String EXTRA_SCORE ="extraScore";
     public static final String CATEGORY_ID = "categoryId";
     public static final String SET_NR = "setNr";
-    private static final long COUNTDOWN_IN_MILLIS = 30000;
+    private static final long COUNTDOWN_IN_MILLIS = 150000;
 
     private TextView tvQuestion;
     private TextView tvScore;
     private TextView tvQuestionCount;
     private TextView tvTimer;
-    private RadioGroup rbGroup;
-    private RadioButton rb1;
-    private RadioButton rb2;
-    private RadioButton rb3;
-    private RadioButton rb4;
-    private Button buttonConfirmNext;
+    private Button rb1;
+    private Button rb2;
+    private Button rb3;
+    private Button rb4;
 
     private ColorStateList textColorDefaultRb;
     private ColorStateList textColorDefaultCd;
@@ -61,14 +65,13 @@ public class RapidActivity extends AppCompatActivity {
     private Question currentQuestion;
 
     private int score;
-    private boolean answered;
+
 
     private long backPressedTime;
     private int categoryIndex;
     private int setNr;
 
     private InterstitialAd interstitialAd;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,12 +84,15 @@ public class RapidActivity extends AppCompatActivity {
         tvScore = findViewById(R.id.score);
         tvQuestionCount = findViewById(R.id.question_number);
         tvTimer = findViewById(R.id.tv_countdown);
-        rbGroup = findViewById(R.id.radio_group);
-        rb1 = findViewById(R.id.radio_button1);
-        rb2 = findViewById(R.id.radio_button2);
-        rb3 = findViewById(R.id.radio_button3);
-        rb4 = findViewById(R.id.radio_button4);
-        buttonConfirmNext = findViewById(R.id.submit_area);
+        rb1 = findViewById(R.id.btn1);
+        rb2 = findViewById(R.id.btn2);
+        rb3 = findViewById(R.id.btn3);
+        rb4 = findViewById(R.id.btn4);
+
+        rb1.setOnClickListener(this);
+        rb2.setOnClickListener(this);
+        rb3.setOnClickListener(this);
+        rb4.setOnClickListener(this);
 
         textColorDefaultRb = rb1.getTextColors();
         textColorDefaultCd = tvTimer.getTextColors();
@@ -121,22 +127,6 @@ public class RapidActivity extends AppCompatActivity {
             }
         });
 
-
-        buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!answered){
-                    if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
-                        checkAnswer();
-                    }else{
-                        Toast.makeText(RapidActivity.this,"Please press a button",Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    showNextQuestion();
-                }
-            }
-        });
-
         //interstetialAd
 
         interstitialAd = new InterstitialAd(this);
@@ -144,33 +134,29 @@ public class RapidActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         interstitialAd.loadAd(adRequest);
 
+        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+        startCountDown();
 
     }
 
     private void showNextQuestion(){
-        rb1.setTextColor(textColorDefaultRb);
-        rb2.setTextColor(textColorDefaultRb);
-        rb3.setTextColor(textColorDefaultRb);
-        rb4.setTextColor(textColorDefaultRb);
-        rbGroup.clearCheck();
+
 
         if(questionCounter < questionCountTotal){
             currentQuestion = questionList.get(questionCounter);
-            tvQuestion.setText(currentQuestion.getQuestion());
-            rb1.setText(currentQuestion.getOption1());
-            rb2.setText(currentQuestion.getOption2());
-            rb3.setText(currentQuestion.getOption3());
-            rb4.setText(currentQuestion.getOption4());
+            playAnim(tvQuestion,0,0);
+            playAnim(rb1,0,1);
+            playAnim(rb2,0,2);
+            playAnim(rb3,0,3);
+            playAnim(rb4,0,4);
+
 
             questionCounter++;
             tvQuestionCount.setText("Question: "+ questionCounter + "/"  + questionCountTotal);
-            answered= false;
-            buttonConfirmNext.setText("Submit");
 
-            timeLeftInMillis = COUNTDOWN_IN_MILLIS;
-            startCountDown();
+
         }else{
-            finishQuiz();
+            dialogs();
         }
     }
     private void startCountDown(){
@@ -185,10 +171,25 @@ public class RapidActivity extends AppCompatActivity {
             public void onFinish() {
                 timeLeftInMillis = 0;
                 updateCountDownText();
-                checkAnswer();
+                dialogs();
             }
         }.start();
     }
+
+    private void dialogs(){
+        MaterialAlertDialogBuilder builder =  new MaterialAlertDialogBuilder(RapidActivity.this);
+        builder.setTitle("Score");
+        builder.setMessage("Your score is " +score);
+        builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishQuiz();
+            }
+        });
+        builder.show();
+    }
+
+
     private void updateCountDownText(){
         int minutes = (int) (timeLeftInMillis / 1000) / 60;
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
@@ -197,63 +198,57 @@ public class RapidActivity extends AppCompatActivity {
 
         tvTimer.setText(timeFormatted);
 
-        if (timeLeftInMillis < 10000){
+        if (timeLeftInMillis < 20000){
             tvTimer.setTextColor(Color.RED);
         }else{
             tvTimer.setTextColor(textColorDefaultCd);
         }
 
     }
-    private void checkAnswer(){
-        answered = true;
-
-        countDownTimer.cancel();
-
-        RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
-        int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
-
-        if(answerNr == currentQuestion.getAnswerNr()){
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void checkAnswer(int selectedOption, View view){
+        if(selectedOption == currentQuestion.getAnswerNr())
+        {
+            //Right Answer
+            ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             score++;
             tvScore.setText("Score: "+ score);
         }
-        showSolution();
-    }
+        else
+        {
+            //Wrong Answer
+            ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
 
-    private void showSolution(){
-        rb1.setTextColor(Color.RED);
-        rb2.setTextColor(Color.RED);
-        rb3.setTextColor(Color.RED);
-        rb4.setTextColor(Color.RED);
+            switch (currentQuestion.getAnswerNr())
+            {
+                case 1:
+                    rb1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    break;
+                case 2:
+                    rb2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    break;
+                case 3:
+                    rb3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    break;
+                case 4:
+                    rb4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    break;
 
-        switch (currentQuestion.getAnswerNr()){
-            case 1:
-                rb1.setTextColor(Color.GREEN);
-                tvQuestion.setText("Answer 1 is correct");
-                break;
+            }
 
-            case 2:
-                rb2.setTextColor(Color.GREEN);
-                tvQuestion.setText("Answer 2 is correct");
-                break;
-
-            case 3:
-                rb3.setTextColor(Color.GREEN);
-                tvQuestion.setText("Answer 3 is correct");
-                break;
-
-            case 4:
-                rb4.setTextColor(Color.GREEN);
-                tvQuestion.setText("Answer 4 is correct");
-                break;
         }
 
-        if(questionCounter < questionCountTotal){
-            buttonConfirmNext.setText("Next");
-        }else{
-            buttonConfirmNext.setText("Finish");
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showNextQuestion();
+            }
+        }, 1000);
 
     }
+
+
 
     private void finishQuiz(){
         interstitialAd.show();
@@ -261,6 +256,68 @@ public class RapidActivity extends AppCompatActivity {
         resultIntent.putExtra(EXTRA_SCORE,score);
         setResult(RESULT_OK, resultIntent);
         finish();
+
+    }
+
+
+
+    private void playAnim(final View view, final int value, final int viewNum)
+    {
+
+        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500)
+                .setStartDelay(100).setInterpolator(new DecelerateInterpolator())
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        if(value == 0)
+                        {
+                            switch (viewNum)
+                            {
+                                case 0:
+                                    ((TextView)view).setText(currentQuestion.getQuestion());
+                                    break;
+                                case 1:
+                                    ((Button)view).setText(currentQuestion.getOption1());
+                                    break;
+                                case 2:
+                                    ((Button)view).setText(currentQuestion.getOption2());
+                                    break;
+                                case 3:
+                                    ((Button)view).setText(currentQuestion.getOption3());
+                                    break;
+                                case 4:
+                                    ((Button)view).setText(currentQuestion.getOption4());
+                                    break;
+
+                            }
+
+
+                            if(viewNum != 0)
+                                ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#f4fa9c")));
+
+
+                            playAnim(view,1,viewNum);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
 
     }
 
@@ -280,5 +337,34 @@ public class RapidActivity extends AppCompatActivity {
         if(countDownTimer != null){
             countDownTimer.cancel();
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onClick(View v) {
+        int selectedOption = 0;
+
+        switch (v.getId())
+        {
+            case R.id.btn1 :
+                selectedOption = 1;
+                break;
+
+            case R.id.btn2:
+                selectedOption = 2;
+                break;
+
+            case R.id.btn3:
+                selectedOption = 3;
+                break;
+
+            case R.id.btn4:
+                selectedOption = 4;
+                break;
+
+            default:
+        }
+
+        checkAnswer(selectedOption, v);
     }
 }
