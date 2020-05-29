@@ -53,9 +53,9 @@ public class SplashActivity extends Activity {
 
 
         mViewModel = new QuestionViewModel(getApplication());
-        List<String> file = new ArrayList<>(Arrays.asList("Science-50", "Others-75", "Sports-50", "IQ-50", "History-100", "Entertenment-50", "Geography-50", "Full-forms-20", "Dharma-Sanskriti-75", "Litrature-50", "Rapid"));
+        List<String> file = new ArrayList<>(Arrays.asList("Science-50",  "Sports-50", "IQ-50", "History-100", "Entertenment-50", "Geography-50", "Full-forms-20", "Dharma-Sanskriti-75", "Litrature-50", "Others-75", "Rapid"));
         String filename = "_Export_DataFrame.jsondata.json";
-        List<String> category = new ArrayList<>(Arrays.asList("Science", "Others", "Sports", "IQ", "History", "Entertainment", "Geography", "Full Forms", "Dharma-Sanskriti", "Literature", "Rapid Fire"));
+        List<String> category = new ArrayList<>(Arrays.asList("Science",  "Sports", "IQ", "History", "Entertainment", "Geography", "Full Forms", "Dharma-Sanskriti", "Literature", "Others","Rapid Fire"));
         List<Integer> categorySetCount = new ArrayList<>();
 
         mViewModel.deleteAll();
