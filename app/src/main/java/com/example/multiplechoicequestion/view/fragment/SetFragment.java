@@ -1,10 +1,13 @@
 package com.example.multiplechoicequestion.view.fragment;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +23,12 @@ import com.example.multiplechoicequestion.room.Category;
 import com.example.multiplechoicequestion.view.activity.CategoryActivity;
 import com.example.multiplechoicequestion.view.adapter.SetListAdapter;
 import com.example.multiplechoicequestion.view.viewmodel.QuestionViewModel;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.List;
 
@@ -30,6 +39,9 @@ public class SetFragment extends Fragment {
     private int mCategoryIndex = 0;
     final String CAREGORY_INDEX = "categoryIndex";
     private TextView textView;
+    private AdView mAdView;
+
+
     public static SetFragment newInstance() {
         return new SetFragment();
     }
@@ -38,12 +50,24 @@ public class SetFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+
         View view = inflater.inflate(R.layout.set_fragment, container, false);
         textView = view.findViewById(R.id.title);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         adapater = new SetListAdapter(getContext());
         recyclerView.setAdapter(adapater);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
         Bundle b = getArguments();//taking arguments from startingFragment
@@ -68,7 +92,7 @@ public class SetFragment extends Fragment {
             mCategoryIndex = savedInstanceState.getInt(CAREGORY_INDEX);
         }
         mViewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
-        System.out.println("Help: "+mCategoryIndex);
+        System.out.println("Help: " + mCategoryIndex);
         mViewModel.getAllCategories().observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
