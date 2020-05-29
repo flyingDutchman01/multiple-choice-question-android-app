@@ -92,6 +92,7 @@ public class SplashActivity extends Activity {
                             Integer.parseInt(answerObject.get(index).toString()), Integer.parseInt(categoryObject.getString(index)), setNr
                     );
 
+
                     //System.out.println(q.getCategoryId());
                     mViewModel.insert(q);
                 }
