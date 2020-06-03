@@ -32,10 +32,14 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener{
@@ -66,6 +70,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private int questionCounter;
     private int questionCountTotal;
     private Question currentQuestion;
+    private HashMap options;
+    private ArrayList optionsPos;
 
     private int score;
 
@@ -98,7 +104,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         rb2.setOnClickListener(this);
         rb3.setOnClickListener(this);
         rb4.setOnClickListener(this);
-
+        rb1.setEnabled(false);
+        rb2.setEnabled(false);
+        rb3.setEnabled(false);
+        rb4.setEnabled(false);
         textColorDefaultRb = rb1.getTextColors();
         textColorDefaultCd = tvTimer.getTextColors();
 
@@ -154,16 +163,35 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showNextQuestion(){
 
-
         if(questionCounter < questionCountTotal){
             currentQuestion = questionList.get(questionCounter);
+            options = new HashMap<>();
+            options.put(1, currentQuestion.getOption1());
+            options.put(2, currentQuestion.getOption2());
+            options.put(3, currentQuestion.getOption3());
+            options.put(4, currentQuestion.getOption4());
+            List keys = new ArrayList(options.keySet());
+            Collections.shuffle(keys);
+            optionsPos = new ArrayList();
+            for (Object o : keys) {
+                // Access keys/values in a random order
+                optionsPos.add(o);
+            }
+            System.out.println("NOw");
+            System.out.println("Answer:" + currentQuestion.getAnswerNr());
+
+            System.out.println(optionsPos);
+            System.out.println(options);
             playAnim(tvQuestion,0,0);
             playAnim(rb1,0,1);
             playAnim(rb2,0,2);
             playAnim(rb3,0,3);
             playAnim(rb4,0,4);
 
-
+            rb1.setEnabled(true);
+            rb2.setEnabled(true);
+            rb3.setEnabled(true);
+            rb4.setEnabled(true);
             questionCounter++;
             tvQuestionCount.setText("Question: "+ questionCounter + "/"  + questionCountTotal);
 
@@ -206,6 +234,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void checkAnswer(int selectedOption, View view){
+        rb1.setEnabled(false);
+        rb2.setEnabled(false);
+        rb3.setEnabled(false);
+        rb4.setEnabled(false);
         if(selectedOption == currentQuestion.getAnswerNr())
         {
             //Right Answer
@@ -217,7 +249,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         {
             //Wrong Answer
             ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-
             switch (currentQuestion.getAnswerNr())
             {
                 case 1:
@@ -282,16 +313,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                                     ((TextView)view).setText(currentQuestion.getQuestion());
                                     break;
                                 case 1:
-                                    ((Button)view).setText(currentQuestion.getOption1());
+                                    ((Button)view).setText((String)options.get((int)optionsPos.get(0)));
                                     break;
                                 case 2:
-                                    ((Button)view).setText(currentQuestion.getOption2());
+                                    ((Button)view).setText((String)options.get((int)optionsPos.get(1)));
                                     break;
                                 case 3:
-                                    ((Button)view).setText(currentQuestion.getOption3());
+                                    ((Button)view).setText((String)options.get((int)optionsPos.get(2)));
                                     break;
                                 case 4:
-                                    ((Button)view).setText(currentQuestion.getOption4());
+                                    ((Button)view).setText((String)options.get((int)optionsPos.get(3)));
                                     break;
 
                             }
@@ -346,24 +377,27 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())
         {
             case R.id.btn1 :
-                selectedOption = 1;
+                selectedOption = (int)optionsPos.get(0);
                 break;
 
             case R.id.btn2:
-                selectedOption = 2;
+                selectedOption = (int)optionsPos.get(1);
                 break;
 
             case R.id.btn3:
-                selectedOption = 3;
+                selectedOption = (int)optionsPos.get(2);
                 break;
 
             case R.id.btn4:
-                selectedOption = 4;
+                selectedOption = (int)optionsPos.get(3);
                 break;
 
             default:
         }
-
+        System.out.println("Answer: "+currentQuestion.getAnswerNr());
+        System.out.println(options);
+        System.out.println(optionsPos);
+        System.out.println("Selected OPition: " + selectedOption);
         countDownTimer.cancel();
         checkAnswer(selectedOption, v);
     }
